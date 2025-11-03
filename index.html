@@ -1,67 +1,289 @@
-<!DOCTYPE -- FILE: index.html -->
-<nav role="navigation" aria-label="Principal">
-<ul>
-<li><a href="index.html" aria-current="page">Início</a></li>
-<li><a href="sobre.html">Sobre</a></li>
-<li><a href="servicos.html">Serviços</a></li>
-<li><a href="portifolio.html">Portfólio</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="contato.html">Contato</a></li>
-<li><a href="formulario.html">Formulario</a></li>
-<li><a href="talentos.html">Banco de Talentos</a></li>
-</ul>
-</nav>
-</header>
-
-
-<main id="main" role="main">
-<section aria-labelledby="apresentacao">
-<h2 id="apresentacao">ONG GF LTDA.</h2>
-<p>Fornecemos serviços de consultoria, desenvolvimento e suporte com foco atender o público da comunidade do sol nascente, e estimular a saúde.</p>
-</section>
-
-
-<section aria-labelledby="servicos-destaque">
-<h2 id="servicos-destaque">Serviços em destaque</h2>
-<article aria-labelledby="servico-ux">
-<h3 id="servico-ux">serviços ofertados</h3>
-<p>consultoria online, avaliação física,plano alimentar e atendimento presencial para toda a comunidade.</p>
-</article>
-<article aria-labelledby="servico-dev">
-<h3 id="servico-dev">personal trainer</h3>
-<p>Metodologias aplicadas no seu dia a dia em busca da melhoria na qualidade de vida.</p>
-</article>
-</section>
-
-
-<aside aria-labelledby="novidades">
-<h2 id="novidades">Novidades</h2>
-<p>Leia nosso último artigo no blog sobre importância da suplementação.</p>
-</aside>
-</main>
-
-
-<footer role="contentinfo">
-<section>
-<h2>Contato rápido</h2>
-<p>E-mail: mentorialtda@hightech.com | Telefone: (11) 0000-0000</p>
-</section>
-<small>&copy; 2025 GF mentoria ltda</small>
-</footer>
-</body>
-<img src="./eu1.jpg" height="150px" width="150px" alt="logo"/>
-
-
-
-
-</html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONG GF LTDA</title>
+
+<style>
+/* =====================================================
+   🌈 SISTEMA DE DESIGN GLOBAL (Design System)
+   ===================================================== */
+
+/* 🎨 Paleta de Cores (8 cores) */
+:root {
+  --cor-primaria: #007bff;
+  --cor-primaria-escura: #0056b3;
+  --cor-secundaria: #17a2b8;
+  --cor-secundaria-escura: #117a8b;
+  --cor-sucesso: #28a745;
+  --cor-alerta: #ffc107;
+  --cor-erro: #dc3545;
+  --cor-fundo: #f8f9fa;
+  --cor-texto: #333333;
+  --cor-branco: #ffffff;
+  --cor-neutra: #cccccc;
+}
+
+/* 🔤 Tipografia Hierárquica (5 tamanhos) */
+:root {
+  --fonte-xl: 2.5rem;
+  --fonte-lg: 1.8rem;
+  --fonte-md: 1.2rem;
+  --fonte-sm: 1rem;
+  --fonte-xs: 0.875rem;
+}
+
+/* 📏 Sistema Modular de Espaçamento */
+:root {
+  --esp-1: 8px;
+  --esp-2: 16px;
+  --esp-3: 24px;
+  --esp-4: 32px;
+  --esp-5: 48px;
+  --esp-6: 64px;
+}
+
+/* =====================================================
+   🧩 LAYOUT GERAL - CSS GRID 12 COLUNAS
+   ===================================================== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  gap: var(--esp-3);
+}
+
+/* =====================================================
+   🔝 CABEÇALHO / NAVEGAÇÃO
+   ===================================================== */
+header {
+  grid-column: 1 / -1;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: var(--esp-2);
+  text-align: center;
+}
+
+nav {
+  background-color: var(--cor-branco);
+  grid-column: 1 / -1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+  list-style: none;
+  margin: 0;
+  padding: var(--esp-2);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--cor-primaria);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--cor-primaria-escura);
+}
+
+/* =====================================================
+   🧠 CONTEÚDO PRINCIPAL
+   ===================================================== */
+main {
+  grid-column: 2 / 12;
+  background-color: var(--cor-branco);
+  border-radius: var(--esp-1);
+  padding: var(--esp-4);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+}
+
+/* Seções internas */
+section {
+  margin-bottom: var(--esp-4);
+}
+
+h2 {
+  font-size: var(--fonte-lg);
+  color: var(--cor-primaria);
+  margin-bottom: var(--esp-2);
+}
+
+h3 {
+  font-size: var(--fonte-md);
+  color: var(--cor-secundaria-escura);
+  margin-bottom: var(--esp-1);
+}
+
+p {
+  font-size: var(--fonte-sm);
+  line-height: 1.6;
+}
+
+/* =====================================================
+   💬 ASIDE / BARRA LATERAL
+   ===================================================== */
+aside {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branco);
+  padding: var(--esp-3);
+  border-radius: var(--esp-1);
+  font-size: var(--fonte-sm);
+}
+
+/* =====================================================
+   👣 RODAPÉ
+   ===================================================== */
+footer {
+  grid-column: 1 / -1;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  text-align: center;
+  padding: var(--esp-3);
+  font-size: var(--fonte-xs);
+}
+
+footer h2 {
+  color: var(--cor-branco);
+  margin-bottom: var(--esp-1);
+}
+
+/* =====================================================
+   🖼️ IMAGEM LOGO
+   ===================================================== */
+img {
+  display: block;
+  margin: var(--esp-3) auto;
+  border-radius: 50%;
+  border: 3px solid var(--cor-primaria);
+}
+
+/* =====================================================
+   📱 RESPONSIVIDADE (5 BREAKPOINTS)
+   ===================================================== */
+
+/* Extra grande (≥1200px) */
+@media (min-width: 1200px) {
+  main {
+    grid-column: 3 / 11;
+  }
+}
+
+/* Grande (992px–1199px) */
+@media (max-width: 1199px) {
+  main {
+    grid-column: 2 / 12;
+  }
+}
+
+/* Médio (768px–991px) */
+@media (max-width: 991px) {
+  body {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  main {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Pequeno (576px–767px) */
+@media (max-width: 767px) {
+  body {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  main {
+    grid-column: 1 / -1;
+    padding: var(--esp-3);
+  }
+}
+
+/* Extra pequeno (<576px) */
+@media (max-width: 575px) {
+  nav {
+    display: none; /* Menu some em telas muito pequenas */
+  }
+  main {
+    grid-column: 1 / -1;
+    padding: var(--esp-2);
+  }
+  footer {
+    font-size: var(--fonte-xs);
+  }
+}
+</style>
 </head>
+
 <body>
-    
+
+<header>
+  <h1>ONG GF LTDA</h1>
+</header>
+
+<nav role="navigation" aria-label="Principal">
+  <ul>
+    <li><a href="index.html" aria-current="page">Início</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="servicos.html">Serviços</a></li>
+    <li><a href="portifolio.html">Portfólio</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contato.html">Contato</a></li>
+    <li><a href="formulario.html">Formulário</a></li>
+    <li><a href="talentos.html">Banco de Talentos</a></li>
+  </ul>
+</nav>
+
+<main id="main" role="main">
+  <section aria-labelledby="apresentacao">
+    <h2 id="apresentacao">ONG GF LTDA</h2>
+    <p>Fornecemos serviços de consultoria, desenvolvimento e suporte com foco em atender a comunidade do Sol Nascente, promovendo saúde e bem-estar.</p>
+  </section>
+
+  <section aria-labelledby="servicos-destaque">
+    <h2 id="servicos-destaque">Serviços em Destaque</h2>
+
+    <article aria-labelledby="servico-ux">
+      <h3 id="servico-ux">Serviços Ofertados</h3>
+      <p>Consultoria online, avaliação física, plano alimentar e atendimento presencial para toda a comunidade.</p>
+    </article>
+
+    <article aria-labelledby="servico-dev">
+      <h3 id="servico-dev">Personal Trainer</h3>
+      <p>Metodologias aplicadas no seu dia a dia em busca da melhoria na qualidade de vida.</p>
+    </article>
+  </section>
+
+  <aside aria-labelledby="novidades">
+    <h2 id="novidades">Novidades</h2>
+    <p>Leia nosso último artigo no blog sobre a importância da suplementação para a saúde.</p>
+  </aside>
+</main>
+
+<footer role="contentinfo">
+  <section>
+    <h2>Contato Rápido</h2>
+    <p>E-mail: mentorialtda@hightech.com | Telefone: (11) 0000-0000</p>
+  </section>
+  <small>&copy; 2025 GF Mentoria LTDA</small>
+</footer>
+
+<img src="./eu1.jpg" height="150" width="150" alt="Logo da ONG GF LTDA"/>
+
 </body>
 </html>
