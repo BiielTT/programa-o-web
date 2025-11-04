@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONG GF LTDA – Projetos e UI</title>
+
+<style>
+/* =====================================================
+   🌈 SISTEMA DE DESIGN GLOBAL
+   ===================================================== */
+
+/* 🎨 Paleta de Cores */
+:root {
+  --cor-primaria: #007bff;
+  --cor-primaria-escura: #0056b3;
+  --cor-secundaria: #17a2b8;
+  --cor-sucesso: #28a745;
+  --cor-alerta: #ffc107;
+  --cor-erro: #dc3545;
+  --cor-fundo: #f8f9fa;
+  --cor-branco: #ffffff;
+  --cor-texto: #333333;
+  --cor-neutra: #cccccc;
+}
+
+/* 🔤 Tipografia Hierárquica */
+:root {
+  --fonte-xl: 2.2rem;
+  --fonte-lg: 1.6rem;
+  --fonte-md: 1.2rem;
+  --fonte-sm: 1rem;
+  --fonte-xs: 0.875rem;
+}
+
+/* 📏 Espaçamento Modular */
+:root {
+  --esp-1: 8px;
+  --esp-2: 16px;
+  --esp-3: 24px;
+  --esp-4: 32px;
+  --esp-5: 48px;
+  --esp-6: 64px;
+}
+
+/* =====================================================
+   🧩 BASE E GRID
+   ===================================================== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--esp-3);
+}
+
+/* =====================================================
+   🔝 HEADER E MENU RESPONSIVO
+   ===================================================== */
+header {
+  grid-column: 1 / -1;
+  text-align: center;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: var(--esp-3);
+}
+
+nav {
+  grid-column: 1 / -1;
+  background-color: var(--cor-branco);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: var(--esp-2);
+  padding: var(--esp-2);
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--cor-primaria);
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--cor-primaria-escura);
+}
+
+/* 🍔 Menu Mobile */
+.menu-toggle {
+  display: none;
+  position: absolute;
+  right: var(--esp-2);
+  top: var(--esp-2);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.menu-toggle div {
+  width: 25px;
+  height: 3px;
+  background-color: var(--cor-primaria);
+  margin: 5px 0;
+}
+
+/* =====================================================
+   🧠 CONTEÚDO PRINCIPAL
+   ===================================================== */
+main {
+  grid-column: 2 / 12;
+  background-color: var(--cor-branco);
+  border-radius: var(--esp-1);
+  padding: var(--esp-4);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* =====================================================
+   💠 CARTÕES DE PROJETOS (CSS Grid + Flex)
+   ===================================================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--esp-3);
+  margin-top: var(--esp-3);
+}
+
+.card {
+  background: var(--cor-branco);
+  border: 1px solid var(--cor-neutra);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.card-content {
+  padding: var(--esp-2);
+}
+.card h3 {
+  font-size: var(--fonte-md);
+  color: var(--cor-primaria);
+}
+.card p {
+  font-size: var(--fonte-sm);
+  line-height: 1.5;
+}
+
+/* =====================================================
+   🔘 BOTÕES (estados visuais)
+   ===================================================== */
+button {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: var(--esp-2) var(--esp-3);
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+button:hover {
+  background-color: var(--cor-primaria-escura);
+}
+button:focus {
+  outline: 3px solid var(--cor-secundaria);
+}
+button:active {
+  background-color: var(--cor-secundaria);
+}
+button:disabled {
+  background-color: var(--cor-neutra);
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   📋 FORMULÁRIOS ESTILIZADOS + VALIDAÇÃO VISUAL
+   ===================================================== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+  margin-top: var(--esp-4);
+}
+label {
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+input, select, textarea {
+  padding: var(--esp-2);
+  border: 1px solid var(--cor-neutra);
+  border-radius: 5px;
+  font-size: var(--fonte-sm);
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--cor-primaria);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+input:invalid {
+  border-color: var(--cor-erro);
+}
+
+/* =====================================================
+   ⚡ COMPONENTES DE FEEDBACK
+   ===================================================== */
+.alert {
+  padding: var(--esp-2);
+  border-radius: 5px;
+  margin-top: var(--esp-2);
+}
+.alert.sucesso { background-color: var(--cor-sucesso); color: var(--cor-branco); }
+.alert.erro { background-color: var(--cor-erro); color: var(--cor-branco); }
+.alert.aviso { background-color: var(--cor-alerta); color: #333; }
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-conteudo {
+  background: var(--cor-branco);
+  padding: var(--esp-3);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+.modal-conteudo button { margin-top: var(--esp-2); }
+
+/* Toast / Brinde */
+.toast {
+  position: fixed;
+  bottom: var(--esp-3);
+  right: var(--esp-3);
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: var(--esp-2) var(--esp-3);
+  border-radius: 5px;
+  display: none;
+}
+
+/* =====================================================
+   🏷️ SISTEMA DE EMBLEMAS E TAGS
+   ===================================================== */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: var(--fonte-xs);
+  color: var(--cor-branco);
+  margin-right: 6px;
+}
+.badge.saude { background-color: var(--cor-sucesso); }
+.badge.fitness { background-color: var(--cor-secundaria); }
+.badge.comunidade { background-color: var(--cor-alerta); }
+
+/* =====================================================
+   📱 RESPONSIVIDADE
+   ===================================================== */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  nav ul { display: none; flex-direction: column; align-items: center; }
+  nav ul.active { display: flex; }
+  main { grid-column: 1 / -1; padding: var(--esp-3); }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>ONG GF LTDA</h1>
+</header>
+
+<nav>
+  <button class="menu-toggle" aria-label="Abrir menu">
+    <div></div><div></div><div></div>
+  </button>
+  <ul>
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Projetos</a></li>
+    <li><a href="#">Equipe</a></li>
+    <li><a href="#">Contato</a></li>
+  </ul>
+</nav>
+
+<main>
+  <h2>Projetos em Destaque</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://picsum.photos/400/200?1" alt="Projeto Saúde">
+      <div class="card-content">
+        <h3>Projeto Saúde Ativa</h3>
+        <span class="badge saude">Saúde</span>
+        <span class="badge comunidade">Comunidade</span>
+        <p>Atendimento gratuito para moradores, com planos de alimentação e atividade física.</p>
+        <button onclick="abrirModal()">Saiba mais</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://i.ytimg.com/vi/emD-mGBUQY8/maxresdefault.jpg" alt="Projeto Fitness">
+      <div class="card-content">
+        <h3>Fitness na Praça</h3>
+        <span class="badge fitness">Fitness</span>
+        <p>Aulas de treinamento funcional em espaços públicos com acompanhamento técnico.</p>
+        <button disabled>Em breve</button>
+      </div>
+    </div>
+  </div>
+
+  <form onsubmit="mostrarToast(event)">
+    <label for="nome">Nome:</label>
+    <input id="nome" name="nome" required placeholder="Seu nome completo">
+
+    <label for="email">E-mail:</label>
+    <input id="email" type="email" required placeholder="seu@email.com">
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div class="alert sucesso">✔ Cadastro realizado com sucesso!</div>
+</main>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-conteudo">
+    <h3>Mais sobre o Projeto</h3>
+    <p>O projeto “Saúde Ativa” incentiva hábitos saudáveis por meio de ações comunitárias.</p>
+    <button onclick="fecharModal()">Fechar</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">Obrigado pelo envio!</div>
+
+<script>
+/* 🍔 MENU HAMBÚRGUER */
+document.querySelector('.menu-toggle').addEventListener('click', () => {
+  document.querySelector('nav ul').classList.toggle('active');
+});
+
+/* 🧩 MODAL */
+function abrirModal() {
+  document.getElementById('modal').style.display = 'flex';
+}
+function fecharModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+/* 🔔 TOAST (BRINDE) */
+function mostrarToast(e) {
+  e.preventDefault();
+  const toast = document.getElementById('toast');
+  toast.style.display = 'block';
+  setTimeout(() => toast.style.display = 'none', 3000);
+}
+</script>
+
+</body>
+</html>
