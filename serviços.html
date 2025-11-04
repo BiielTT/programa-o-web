@@ -3,51 +3,165 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Serviços — Empresa Exemplo</title>
-<meta name="description" content="Lista de serviços oferecidos">
+<title>Empresa Exemplo — SPA</title>
+<meta name="description" content="Aplicação de página única com templates JavaScript.">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header, footer {
+    background: #007bff;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  main {
+    background: #fff;
+    max-width: 900px;
+    width: 90%;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: opacity 0.3s ease;
+  }
+
+  section {
+    margin-bottom: 30px;
+  }
+
+  h1, h2, h3 {
+    color: #007bff;
+  }
+
+  footer {
+    margin-top: auto;
+    font-size: 0.9rem;
+  }
+</style>
 </head>
 <body>
 <header>
-<h1>Serviços</h1>
-<nav aria-label="Principal">
-<ul>
-<li><a href="index.html">Início</a></li>
-<li><a href="sobre.html">Sobre</a></li>
-<li><a href="servicos.html" aria-current="page">Serviços</a></li>
-</ul>
-</nav>
+  <h1>Empresa Exemplo</h1>
+  <nav aria-label="Principal">
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
 </header>
 
-
-<main>
-<section aria-labelledby="consultoria">
-<h2 id="consultoria">Consultoria</h2>
-<p>contultoria online, avaliação física e atendimento presencial.</p>
-</section>
-
-
-<section aria-labelledby="desenvolvimento">
-<h2 id="desenvolvimento">Desenvolvimento</h2>
-<article>
-<h3>Front-end</h3>
-<p>HTML semântico, CSS moderno e JavaScript otimizado.</p>
-</article>
-<article>
-<h3>Back-end</h3>
-<p>APIs seguras e arquitetura escalável.</p>
-</article>
-</section>
-
-
-<section aria-labelledby="acessibilidade">
-<h2 id="acessibilidade">Acessibilidade</h2>
-<p>Avaliações e adequações para conformidade com WCAG.</p>
-</section>
+<main id="conteudo">
+  <!-- Conteúdo dinâmico será carregado aqui -->
 </main>
 
-
 <footer>
-<p>Solicite uma proposta através da página de <a href="contato.html">contato</a>.</p>
+  <p>&copy; 2025 ONG GF LTDA  — Todos os direitos reservados.</p>
 </footer>
+
+<script>
+/* =====================================================
+   🧩 SISTEMA DE SINGLE PAGE APPLICATION (SPA)
+   ===================================================== */
+
+/* Templates de conteúdo — HTML injetado via JavaScript */
+const templates = {
+  inicio: `
+    <section>
+      <h2>Bem-vindo à Empresa GF LTDA </h2>
+      <p>Fornecemos serviços de consultoria, desenvolvimento e suporte com foco em atender a comunidade do Sol Nascente, promovendo saúde e bem-estar.</p>
+      <p>Nossa missão é ajudar a população alcançarem seus objetivos atráves da atividade física e promover a saúde.</p>
+    </section>
+  `,
+  sobre: `
+    <section>
+      <h2>Sobre Nós</h2>
+      <p>Fundada em 2020,Fornecemos serviços de consultoria, desenvolvimento e suporte com foco em atender a comunidade do Sol Nascente, promovendo saúde e bem-estar</p>
+      <p>Trabalhamos com profissionais qualificados e comprometidos em entregar excelência e resultados.</p>
+    </section>
+  `,
+  servicos: `
+    <section aria-labelledby="consultoria">
+      <h2 id="consultoria">Consultoria</h2>
+      <p>Consultoria online, avaliação física e atendimento presencial.</p>
+    </section>
+
+    <section aria-labelledby="desenvolvimento">
+      <h2 id="desenvolvimento">Desenvolvimento</h2>
+      <article>
+        <h3>Front-end</h3>
+        <p>HTML semântico, CSS moderno e JavaScript otimizado.</p>
+      </article>
+      <article>
+        <h3>Back-end</h3>
+        <p>APIs seguras e arquitetura escalável.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="acessibilidade">
+      <h2 id="acessibilidade">Acessibilidade</h2>
+      <p>Avaliações e adequações para conformidade com WCAG.</p>
+    </section>
+  `,
+  contato: `
+    <section>
+      <h2>Contato</h2>
+      <p>📧 E-mail: ONGGFLTDA.@HIGHTECH.COM </p>
+      <p>📞 Telefone: (11) 99999-9999</p>
+      <p>📍 Endereço: Avenida da Inovação, 1000 — São Paulo, SP</p>
+    </section>
+  `
+};
+
+/* Função para carregar o conteúdo */
+function carregarPagina(pagina) {
+  const conteudo = document.getElementById('conteudo');
+  conteudo.style.opacity = 0;
+  setTimeout(() => {
+    conteudo.innerHTML = templates[pagina] || "<h2>Página não encontrada.</h2>";
+    conteudo.style.opacity = 1;
+  }, 200);
+}
+
+/* Roteador — muda o conteúdo conforme o hash da URL */
+function roteador() {
+  const pagina = location.hash.replace('#', '') || 'inicio';
+  carregarPagina(pagina);
+}
+
+/* Inicialização da SPA */
+window.addEventListener('hashchange', roteador);
+window.addEventListener('load', roteador);
+</script>
+
 </body>
 </html>
